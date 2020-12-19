@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/16 13:29:17 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/12/16 13:44:30 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/12/19 20:02:14 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,14 @@ struct	s_dblvect
 	size_t	nmemb;
 	size_t	size;
 };
+
+typedef struct	s_vector
+{
+	void	*table;
+	size_t	data_size;
+	size_t	nmemb;
+	size_t	size;
+}				t_vector;
 
 typedef struct s_int64vect t_int32vect;
 typedef struct s_uint32vect t_uint32vect;
