@@ -6,12 +6,12 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/16 13:55:22 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/12/19 21:09:40 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/12/19 22:53:41 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "vectors.h"
+#include "libvect.h"
 
 static void	*vect_memcpy(void *dest, void *src, size_t size)
 {
@@ -70,7 +70,7 @@ static int	int64vect_realloc(t_int64vect *vector)
 	return (0);
 }
 
-int			int64vect_pushback(long value, t_int64vect *vector)
+int			int64vect_pushback(long long value, t_int64vect *vector)
 {
 	if (vector->nmemb == vector->size)
 	{

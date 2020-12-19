@@ -6,12 +6,12 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/16 13:53:14 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/12/19 21:09:50 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/12/19 22:53:34 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "vectors.h"
+#include "libvect.h"
 
 static void	*vect_memcpy(void *dest, void *src, size_t size)
 {

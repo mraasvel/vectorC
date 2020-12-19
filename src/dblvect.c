@@ -6,12 +6,12 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/19 20:55:24 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/12/19 21:10:43 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/12/19 22:53:51 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "vectors.h"
+#include "libvect.h"
 
 static void	*dblvect_memcpy(void *dest, void *src, size_t n)
 {

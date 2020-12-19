@@ -6,7 +6,7 @@
 #    By: mraasvel <mraasvel@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/12/16 13:54:49 by mraasvel      #+#    #+#                  #
-#    Updated: 2020/12/19 21:08:16 by mraasvel      ########   odam.nl          #
+#    Updated: 2020/12/19 22:53:25 by mraasvel      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ IFLAGS = -I .
 all: $(NAME)
 .PHONY: all clean fclean re
 
-$(NAME): $(OBJ) vectors.h
+$(NAME): $(OBJ) libvect.h
 	ar rcs $@ $(OBJ)
 $(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
 	$(CC) -c -o $@ $(CFLAGS) $< $(IFLAGS)
