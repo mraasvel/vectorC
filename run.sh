@@ -1,1 +1,1 @@
-gcc main.c && ./a.out
+gcc -g -fsanitize=address main.c vector.c && ./a.out

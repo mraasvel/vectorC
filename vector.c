@@ -6,10 +6,11 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/19 19:54:14 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/12/19 20:07:18 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/12/19 20:23:47 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "vectors.h"
 
 static void	*vector_memcpy(void *dest, void *src, size_t n)
@@ -77,6 +78,17 @@ static int	vector_realloc(t_vector *vector)
 	free(vector->table);
 	vector->table = new_table;
 	return (0);
+}
+
+void		*vector_add(t_vector *vector)
+{
+	if (vector->nmemb == vector->size)
+	{
+		if (vector_realloc(vector) == -1)
+			return (NULL);
+	}
+	vector->nmemb += 1;
+	return (vector->table + vector->nmemb - 1);
 }
 
 int			vector_pushback(t_vector *vector, void *data)

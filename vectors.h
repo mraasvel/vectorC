@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/16 13:29:17 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/12/19 20:02:14 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/12/19 20:20:28 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,10 @@ typedef struct s_charvect t_charvect;
 typedef struct s_strvect t_strvect;
 typedef struct s_fltvect t_fltvect;
 typedef struct s_dblvect t_dblvect;
+
+t_vector	*vector_init(size_t initial_size, unsigned int data_type);
+int			vector_pushback(t_vector *vector, void *data);
+void		free_vector(t_vector *vector, void (*del)(void*));
+void		*vector_add(t_vector *vector);
 
 #endif
