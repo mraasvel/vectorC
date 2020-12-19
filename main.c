@@ -6,24 +6,25 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/16 14:03:09 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/12/19 20:24:01 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/12/19 21:02:22 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <string.h>
+#include <limits.h>
+#include <float.h>
 #include <stdlib.h>
 #include "vectors.h"
 
 int	main(void)
 {
-	t_vector	*vector;
-	void		*ptr;
+	t_ldblvect	*vector;
 	
-	vector = vector_init(0, sizeof(char*));
-	ptr = vector_add(vector);
-	*(char**)ptr = strdup("abc");
-	printf("%s\n", ((char**)vector->table)[0]);
-	free_vector(vector, free);
+	
+	vector = ldblvect_init(0);
+	ldblvect_pushback(vector, 234.394857389475);
+	printf("%Lf\n", vector->table[0]);
+	ldblvect_free(vector);
 	return (0);
 }

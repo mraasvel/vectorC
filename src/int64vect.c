@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/16 13:55:22 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/12/16 13:58:18 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/12/19 21:09:40 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_int64vect	*int64vect_init(size_t initial_size)
 	vector = (t_int64vect*)malloc(1 * sizeof(t_int64vect));
 	if (vector == NULL)
 		return (NULL);
-	vector->table = (long*)malloc(initial_size * sizeof(long));
+	vector->table = (long long*)malloc(initial_size * sizeof(long long));
 	if (vector->table == NULL)
 	{
 		free(vector);
@@ -56,11 +56,11 @@ void		int64vect_free(t_int64vect *vector)
 
 static int	int64vect_realloc(t_int64vect *vector)
 {
-	size_t	new_size;
-	long	*new_table;
+	size_t		new_size;
+	long long	*new_table;
 
 	new_size = vector->size * 2;
-	new_table = (long*)malloc(new_size * sizeof(long));
+	new_table = (long long*)malloc(new_size * sizeof(long long));
 	if (new_table == NULL)
 		return (-1);
 	vect_memcpy(new_table, vector->table, vector->nmemb);

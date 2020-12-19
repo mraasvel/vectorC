@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   intvect.c                                          :+:    :+:            */
+/*   dblvect.c                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/12/16 13:42:09 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/12/16 13:52:34 by mraasvel      ########   odam.nl         */
+/*   Created: 2020/12/19 20:55:24 by mraasvel      #+#    #+#                 */
+/*   Updated: 2020/12/19 21:10:43 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "vectors.h"
 
-static void	*vect_memcpy(void *dest, void *src, size_t size)
+static void	*dblvect_memcpy(void *dest, void *src, size_t n)
 {
 	size_t	i;
 
+	i = 0;
 	if (dest == src)
 		return (dest);
-	i = 0;
-	while (i < size)
+	while (i < n)
 	{
 		((unsigned char*)dest)[i] = ((unsigned char*)src)[i];
 		i++;
@@ -28,59 +28,57 @@ static void	*vect_memcpy(void *dest, void *src, size_t size)
 	return (dest);
 }
 
-t_int32vect	*int32vect_init(size_t initial_size)
+t_dblvect	*dblvect_init(size_t initial_size)
 {
-	t_int32vect	*vector;
+	t_dblvect	*vector;
 
 	if (initial_size == 0)
 		initial_size = 2;
-	vector = (t_int32vect*)malloc(1 * sizeof(t_int32vect));
+	vector = malloc(initial_size * sizeof(t_dblvect));
 	if (vector == NULL)
 		return (NULL);
-	vector->table = (int*)malloc(initial_size * sizeof(int));
+	vector->table = malloc(initial_size * sizeof(double));
 	if (vector->table == NULL)
 	{
 		free(vector);
 		return (NULL);
 	}
-	vector->size = initial_size;
 	vector->nmemb = 0;
+	vector->size = initial_size;
 	return (vector);
 }
 
-void		int32vect_free(t_int32vect *vector)
+void		dblvect_free(t_dblvect *vector)
 {
 	free(vector->table);
 	free(vector);
 }
 
-static int	int32vect_realloc(t_int32vect *vector)
+static int	dblvect_realloc(t_dblvect *vector)
 {
-	size_t	new_size;
-	int		*new_table;
+	double	*new_table;
 
-	new_size = vector->size * 2;
-	new_table = (int*)malloc(new_size * sizeof(int));
+	vector->size *= 2;
+	new_table = malloc(vector->size * sizeof(double));
 	if (new_table == NULL)
 		return (-1);
-	vect_memcpy(new_table, vector->table, vector->nmemb);
+	dblvect_memcpy(new_table, vector->table, vector->nmemb * sizeof(double));
 	free(vector->table);
 	vector->table = new_table;
-	vector->size = new_size;
 	return (0);
 }
 
-int			int32vect_pushback(int value, t_int32vect *vector)
+int			dblvect_pushback(t_dblvect *vector, double data)
 {
 	if (vector->nmemb == vector->size)
 	{
-		if (int32vect_realloc(vector) == -1)
+		if (dblvect_realloc(vector) == -1)
 		{
-			int32vect_free(vector);
+			dblvect_free(vector);
 			return (-1);
 		}
 	}
-	vector->table[vector->nmemb] = value;
+	vector->table[vector->nmemb] = data;
 	vector->nmemb += 1;
 	return (0);
 }

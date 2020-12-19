@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   uint32vect.c                                       :+:    :+:            */
+/*   uint64vect.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/12/16 13:53:14 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/12/16 13:54:23 by mraasvel      ########   odam.nl         */
+/*   Created: 2020/12/16 13:55:22 by mraasvel      #+#    #+#                 */
+/*   Updated: 2020/12/19 21:09:37 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,16 @@ static void	*vect_memcpy(void *dest, void *src, size_t size)
 	return (dest);
 }
 
-t_uint32vect	*uint32vect_init(size_t initial_size)
+t_uint64vect	*uint64vect_init(size_t initial_size)
 {
-	t_uint32vect	*vector;
+	t_uint64vect	*vector;
 
 	if (initial_size == 0)
 		initial_size = 2;
-	vector = (t_uint32vect*)malloc(1 * sizeof(t_uint32vect));
+	vector = (t_uint64vect*)malloc(1 * sizeof(t_uint64vect));
 	if (vector == NULL)
 		return (NULL);
-	vector->table = (unsigned int*)malloc(initial_size * sizeof(unsigned int));
+	vector->table = (unsigned long long*)malloc(initial_size * sizeof(unsigned long long));
 	if (vector->table == NULL)
 	{
 		free(vector);
@@ -48,19 +48,19 @@ t_uint32vect	*uint32vect_init(size_t initial_size)
 	return (vector);
 }
 
-void		uint32vect_free(t_uint32vect *vector)
+void		uint64vect_free(t_uint64vect *vector)
 {
 	free(vector->table);
 	free(vector);
 }
 
-static int	uint32vect_realloc(t_uint32vect *vector)
+static int	uint64vect_realloc(t_uint64vect *vector)
 {
-	size_t			new_size;
-	unsigned int	*new_table;
+	size_t				new_size;
+	unsigned long long	*new_table;
 
 	new_size = vector->size * 2;
-	new_table = (unsigned int*)malloc(new_size * sizeof(unsigned int));
+	new_table = (unsigned long long*)malloc(new_size * sizeof(unsigned long long));
 	if (new_table == NULL)
 		return (-1);
 	vect_memcpy(new_table, vector->table, vector->nmemb);
@@ -70,13 +70,13 @@ static int	uint32vect_realloc(t_uint32vect *vector)
 	return (0);
 }
 
-int			uint32vect_pushback(unsigned int value, t_uint32vect *vector)
+int			uint64vect_pushback(unsigned long long value, t_uint64vect *vector)
 {
 	if (vector->nmemb == vector->size)
 	{
-		if (uint32vect_realloc(vector) == -1)
+		if (uint64vect_realloc(vector) == -1)
 		{
-			uint32vect_free(vector);
+			uint64vect_free(vector);
 			return (-1);
 		}
 	}
