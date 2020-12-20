@@ -1,3 +1,7 @@
+**help**
+
+	If you have any advice on how this can be implemented better/more effectively feel free to let me know
+
 **C++ Vectors**
 
 	Makefile compiles all .c files into a static library.
