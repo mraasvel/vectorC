@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/19 19:54:14 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/12/19 22:57:56 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/12/20 20:32:43 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,15 @@ static int	vector_realloc(t_vector *vector)
 	return (0);
 }
 
-int			vector_pushback(t_vector *vector, void *data)
+int			vector_pushback(t_vector *vector, void *data, void (*del)(void*))
 {
 	if (vector->nmemb == vector->size)
 	{
 		if (vector_realloc(vector) == -1)
+		{
+			vector_free(vector, del);
 			return (-1);
+		}
 	}
 	vector_memcpy(vector->table + vector->nmemb, &data, vector->data_size);
 	vector->nmemb += 1;

@@ -1,0 +1,1 @@
+gcc structvect.c && ./a.out
