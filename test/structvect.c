@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/20 20:28:35 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/12/20 20:55:08 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/12/20 22:27:27 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,16 @@ t_VECTOR_TYPEvect	*VECTOR_TYPEvect_init(size_t initial_size)
 
 static int			VECTOR_TYPEvect_realloc(t_VECTOR_TYPEvect *vector)
 {
-	
+	VECTOR_TYPE	*new;
+
+	vector->size *= 2;
+	new = malloc(vector->size * sizeof(VECTOR_TYPE));
+	if (new == NULL)
+		return (-1);
+	VECTOR_TYPEvect_memcpy(new, vector->table, vector->nmemb * sizeof(VECTOR_TYPE));
+	free(vector->table);
+	vector->table = new;
+	return (0);
 }
 
 int					VECTOR_TYPEvect_pushback(VECTOR_TYPE data, t_VECTOR_TYPEvect *vector)

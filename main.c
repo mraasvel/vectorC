@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/16 14:03:09 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/12/19 21:02:22 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/12/20 21:16:46 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <limits.h>
 #include <float.h>
 #include <stdlib.h>
-#include "vectors.h"
+#include "libvect.h"
 
 int	main(void)
 {
