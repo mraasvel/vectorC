@@ -6,7 +6,7 @@
 /*   By: mraasvel <mraasvel@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/12/16 13:29:17 by mraasvel      #+#    #+#                 */
-/*   Updated: 2020/12/20 23:17:54 by mraasvel      ########   odam.nl         */
+/*   Updated: 2020/12/27 20:53:39 by mraasvel      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void		ldblvect_free(t_ldblvect *vector);
 t_ldblvect	*ldblvect_init(size_t initial_size);
 
 /*
-** Vector that can take any data type
+** Vector that can take any data type (8 bytes)
 ** except floats and doubles.
 ** 
 ** Pushback non_ptr: vector_pushback(vector, (void*)'a');
@@ -112,17 +112,24 @@ t_ldblvect	*ldblvect_init(size_t initial_size);
 ** Send own delete function for freeing contents of void* (like free for strings/pointers)
 */
 
-typedef struct	s_vector
+typedef struct	s_vect
 {
 	void	*table;
 	size_t	data_size;
 	size_t	nmemb;
 	size_t	size;
-}				t_vector;
+}				t_vect;
 
-t_vector	*vector_init(size_t initial_size, unsigned int data_type);
-int			vector_pushback(t_vector *vector, void *data, void (*del)(void*));
-void		vector_free(t_vector *vector, void (*del)(void*));
-void		*vector_add(t_vector *vector);
+typedef struct	s_vpvect
+{
+	void	**table;
+	size_t	nmemb;
+	size_t	size;
+}				t_vpvect;
+
+t_vect		*vect_init(size_t initial_size, unsigned int data_type);
+int			vect_pushback(t_vect *vector, void *data);
+void		vect_free(t_vect *vector, void (*del)(void*));
+void		*vect_add(t_vect *vector);
 
 #endif
